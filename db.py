@@ -1,9 +1,11 @@
 import sqlite3
 from pathlib import Path
 
+# get an absolute path to the database
 DATABASE = Path().parent / "CCL_ecommerce.db"
 
 
+# helper funtion to run sql queries on the database
 def query_db(query, args=()):
     with sqlite3.connect(DATABASE) as conn:
         cursor = conn.cursor()

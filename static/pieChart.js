@@ -1,12 +1,17 @@
 async function main() {
+  // fetch the data from the endpoint we created
   const res = await fetch('http://localhost:5000/api/products/colour')
   const data = await res.json()
 
-  const colours = data.map(item => item.description)
-  const counts = data.map(item => item.count)
+  // turn the data into arrays
+  const colours = data.map(item => item.description) // ["Orange", "Navy", ...]
+  const counts = data.map(item => item.count) // [17, 31, ...]
 
+  // grab a reference to the canvas element on the page
   const ctx = document.getElementById('pieChart').getContext('2d')
 
+  // create the chart
+  // https://www.chartjs.org/docs/latest/charts/doughnut.html
   new Chart(ctx, {
     type: 'pie',
     data: {
@@ -24,4 +29,5 @@ async function main() {
   })
 }
 
+// after the page has loaded, render the pie chart onto the page
 document.addEventListener('DOMContentLoaded', main)
